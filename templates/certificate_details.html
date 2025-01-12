@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='canik_spy_logo.png') }}" alt="Canik Spy LTD Logo" width="100" height="100">
+        <h1>Canik Spy LTD Certificate Details</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/login">Admin Login</a>
+        </nav>
+    </header>
+
+    <h2>Certificate Details</h2>
+    <div class="certificate-details">
+        <table>
+            <tr>
+                <th>Name</th>
+                <td>{{ certificate[1] }}</td>
+            </tr>
+            <tr>
+                <th>Certificate Number</th>
+                <td>{{ certificate[2] }}</td>
+            </tr>
+            <tr>
+                <th>Course Type</th>
+                <td>{{ certificate[3] }}</td>
+            </tr>
+            <tr>
+                <th>Date Issued</th>
+                <td>{{ certificate[4] }}</td>
+            </tr>
+        </table>
+    </div>
+    <footer>
+        <p>&copy; 2025 Canik Spy LTD. All Rights Reserved. | By: <a href="https://laitechsolutions.co.ke/" target="_blank" style="color: white; text-decoration: none;">LaiTech Solutions</a></p>
+    </footer>
+</body>
+</html>

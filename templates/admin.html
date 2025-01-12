@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='canik_spy_logo.png') }}" alt="Canik Spy LTD Logo" width="100" height="100">
+        <h1>Canik Spy LTD Admin Dashboard</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/login">Logout</a>
+        </nav>
+    </header>
+
+    <h2>Manage Certificates</h2>
+    <a href="/admin/add">Add Certificate</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Certificate Number</th>
+                <th>Course Type</th>
+                <th>Date Issued</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for certificate in certificates %}
+            <tr>
+                <td>{{ certificate[1] }}</td>
+                <td>{{ certificate[2] }}</td>
+                <td>{{ certificate[3] }}</td>
+                <td>{{ certificate[4] }}</td>
+                <td>
+                    <a href="/admin/edit/{{ certificate[0] }}">Edit</a>
+                    <a href="/admin/delete/{{ certificate[0] }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <footer>
+        <p>&copy; 2025 Canik Spy LTD. All Rights Reserved. | By: <a href="https://laitechsolutions.co.ke/" target="_blank" style="color: white; text-decoration: none;">LaiTech Solutions</a></p>
+    </footer>
+</body>
+</html>

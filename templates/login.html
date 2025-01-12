@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Canik Spy LTD</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='canik_spy_logo.png') }}" alt="Canik Spy LTD Logo" width="100" height="100">
+        <h1>Admin Login - Canik Spy LTD</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/certificate">Search Certificates</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="login-form">
+            <h2>Login to Admin Panel</h2>
+            <form action="/login" method="POST">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+                
+                <button type="submit">Login</button>
+            </form>
+
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Canik Spy LTD. All Rights Reserved. | By: <a href="https://laitechsolutions.co.ke/" target="_blank" style="color: white; text-decoration: none;">LaiTech Solutions</a></p>
+    </footer>
+</body>
+</html>

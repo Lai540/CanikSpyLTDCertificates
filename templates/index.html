@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canik Spy LTD - Certificate Verification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='canik_spy_logo.png') }}" alt="Canik Spy LTD Logo" width="100" height="100">
+        <h1>Canik Spy LTD Certificate Verification</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/certificate">Search Certificates</a>
+            <a href="/login">Admin Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Welcome to Canik Spy LTD Certificate Verification</h2>
+            <p>Use the search feature below to verify certificates issued by Canik Spy LTD.</p>
+        </section>
+
+        <section>
+            <h3>Search for a Certificate</h3>
+            <form action="/certificate" method="POST">
+                <label for="certificate_number">Certificate Number:</label>
+                <input type="text" id="certificate_number" name="certificate_number" required>
+    
+                <label for="surname">Surname:</label>
+                <input type="text" id="surname" name="surname">
+    
+                <button type="submit">Verify</button>
+            </form>
+
+        </section>
+
+        {% if certificates %}
+        <section>
+            <h3>Search Results</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Certificate Number</th>
+                        <th>Course Type</th>
+                        <th>Date Issued</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for certificate in certificates %}
+                    <tr>
+                        <td>{{ certificate[1] }}</td>
+                        <td>{{ certificate[2] }}</td>
+                        <td>{{ certificate[3] }}</td>
+                        <td>{{ certificate[4] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Canik Spy LTD. All Rights Reserved. | By: <a href="https://laitechsolutions.co.ke/" target="_blank" style="color: white; text-decoration: none;">LaiTech Solutions</a></p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Certificate</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='canik_spy_logo.png') }}" alt="Canik Spy LTD Logo" width="100" height="100">
+        <h1>Canik Spy LTD - Edit Certificate</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/admin">Admin Dashboard</a>
+        </nav>
+    </header>
+
+    <h2>Edit Certificate</h2>
+    <form action="/admin/edit/{{ certificate[0] }}" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ certificate[1] }}" required>
+        
+        <label for="certificate_number">Certificate Number:</label>
+        <input type="text" id="certificate_number" name="certificate_number" value="{{ certificate[2] }}" required>
+        
+        <label for="course_type">Course Type:</label>
+        <input type="text" id="course_type" name="course_type" value="{{ certificate[3] }}" required>
+        
+        <label for="date_issued">Date Issued:</label>
+        <input type="date" id="date_issued" name="date_issued" value="{{ certificate[4] }}" required>
+        
+        <button type="submit">Update Certificate</button>
+    </form>
+    <footer>
+        <p>&copy; 2025 Canik Spy LTD. All Rights Reserved. | By: <a href="https://laitechsolutions.co.ke/" target="_blank" style="color: white; text-decoration: none;">LaiTech Solutions</a></p>
+    </footer>
+</body>
+</html>
