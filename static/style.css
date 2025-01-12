@@ -12,14 +12,14 @@ body {
     text-align: center;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ensures the footer is pushed to the bottom if the content is small */
+    min-height: 100vh;
 }
 
 /* Typography */
 h1, h2 {
     color: #800000; /* Maroon color */
     margin-top: 20px;
-    word-wrap: break-word; /* Prevents overflow for long words */
+    word-wrap: break-word;
 }
 
 header {
@@ -29,18 +29,18 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Allows items to wrap on small screens */
-    gap: 10px; /* Adds spacing between items */
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 header h1 {
     font-size: 2em;
-    text-align: center; /* Centers the title for smaller devices */
+    text-align: center;
 }
 
 header nav {
     display: flex;
-    flex-wrap: wrap; /* Allows links to wrap */
+    flex-wrap: wrap;
     gap: 10px;
 }
 
@@ -50,7 +50,7 @@ header nav a {
     padding: 10px 15px;
     background-color: #660000;
     border-radius: 5px;
-    font-size: 0.9em; /* Scales down for smaller devices */
+    font-size: 0.9em;
     text-align: center;
 }
 
@@ -60,171 +60,114 @@ header nav a:hover {
 
 header img {
     margin-right: 20px;
-    max-width: 100px; /* Prevents oversized logos */
+    max-width: 100px;
 }
 
-/* Table Styling with Shadow */
-table {
-    width: 90%; /* Makes the table responsive */
-    margin: 20px auto; /* Centers the table horizontally */
-    border-collapse: collapse;
-    border-spacing: 0; /* Removes extra spacing */
-    border-radius: 10px; /* Adds rounded corners */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Creates a shadow effect */
-    overflow: hidden; /* Ensures no overflow for rounded corners */
-    background-color: #fff; /* Background for clarity */
-}
-
-/* Table Header */
-th {
-    background-color: #800000; /* Maroon header background */
-    color: white;
-    text-transform: uppercase;
-    padding: 12px;
-    border-bottom: 2px solid #ddd; /* Subtle separation */
-    font-size: 0.9em;
-    text-align: left;
-}
-
-/* Table Body */
-td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd; /* Subtle separation */
-    font-size: 0.9em;
-    word-break: break-word; /* Prevents text overflow */
-}
-
-tr:nth-child(even) {
-    background-color: #f9f9f9; /* Alternate row colors for readability */
-}
-
-tr:hover {
-    background-color: #f0f0f0; /* Subtle hover effect */
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Lift effect on hover */
-    transition: all 0.3s ease; /* Smooth transition for hover effect */
-}
-
-/* Wrapping Table for Small Screens */
-@media (max-width: 768px) {
-    table {
-        display: block; /* Enables horizontal scrolling */
-        overflow-x: auto;
-    }
-
-    th, td {
-        font-size: 0.8em; /* Adjust text size for smaller screens */
-    }
-}
-
-/* Certificate Details Container */
-.certificate-details {
-    margin-top: 40px;
-    padding: 20px;
-    background-color: #f8f8f8; /* Light gray background for details */
-    border: 1px solid #800000;
-    border-radius: 5px;
+/* Form Styling */
+form {
     width: 90%;
-    max-width: 600px; /* Limits width for larger screens */
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.certificate-details p {
-    font-size: 1em; /* Adjusted for readability on smaller devices */
-    margin: 10px 0;
-}
-
-/* Admin Login Form */
-.login-form, .certificate-form {
-    width: 90%; /* Makes forms responsive */
-    max-width: 400px;
-    margin: 20px auto;
+    max-width: 600px;
+    margin: 30px auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 10px;
     border: 1px solid #ddd;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     display: flex;
-    flex-direction: column; /* Stack form elements vertically */
-    gap: 15px; /* Space between form elements */
+    flex-direction: column;
+    gap: 15px;
 }
 
-.login-form input, .certificate-form input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    font-size: 1em;
-}
-
-.login-form button, .certificate-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #800000;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-}
-
-.login-form button:hover, .certificate-form button:hover {
-    background-color: #660000;
-}
-
-/* Certificate Search Form */
-.certificate-search-form {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto; /* Center the form */
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    gap: 15px; /* Add space between form elements */
-}
-
-.certificate-search-form .form-group {
-    display: flex;
-    flex-direction: column; /* Ensures label and input stack */
-    gap: 5px; /* Add space between label and input */
-}
-
-.certificate-search-form label {
+form label {
+    text-align: left;
     font-weight: bold;
     color: #333;
+    margin-bottom: 5px;
 }
 
-.certificate-search-form input {
-    padding: 12px;
+form input, form button {
+    padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
     font-size: 1rem;
+    width: 100%;
 }
 
-.certificate-search-form input:focus {
-    border-color: #800000; /* Highlight color for focus */
+form input:focus {
+    border-color: #800000;
     outline: none;
+    background-color: #fdf7f7;
 }
 
-.certificate-search-form .submit-button {
-    padding: 12px;
+form button {
     background-color: #800000;
     color: white;
-    font-weight: bold;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
     transition: background-color 0.3s;
 }
 
-.certificate-search-form .submit-button:hover {
+form button:hover {
     background-color: #660000;
+}
+
+/* Table Styling - Card-like Headers */
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-radius: 10px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+th {
+    background-color: #800000;
+    color: white;
+    text-transform: uppercase;
+    padding: 12px;
+    font-size: 1em;
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Card shadow effect */
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+}
+
+th:hover {
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.9em;
+    word-break: break-word;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Responsive Tables */
+@media (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    th, td {
+        font-size: 0.8em;
+    }
 }
 
 /* Footer Style */
@@ -233,8 +176,8 @@ footer {
     color: white;
     padding: 20px 0;
     text-align: center;
-    font-size: 0.9em; /* Scales down text on smaller devices */
-    margin-top: auto; /* Ensures the footer is pushed to the bottom */
+    font-size: 0.9em;
+    margin-top: auto;
 }
 
 footer a {
@@ -258,7 +201,7 @@ footer a:hover {
         justify-content: center;
     }
 
-    .certificate-details, .login-form, .certificate-form, .certificate-search-form {
+    form {
         width: 95%;
     }
 }

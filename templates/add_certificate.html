@@ -18,21 +18,30 @@
     </header>
 
     <h2>Add New Certificate</h2>
-    <form action="/admin/add" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        
-        <label for="certificate_number">Certificate Number:</label>
-        <input type="text" id="certificate_number" name="certificate_number" required>
-        
-        <label for="course_type">Course Type:</label>
-        <input type="text" id="course_type" name="course_type" required>
-        
-        <label for="date_issued">Date Issued:</label>
-        <input type="date" id="date_issued" name="date_issued" required>
-        
-        <button type="submit">Add Certificate</button>
+    <form action="/admin/add" method="POST" class="form-layout">
+        <ul>
+            <li>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </li>
+            <li>
+                <label for="certificate_number">Certificate Number:</label>
+                <input type="text" id="certificate_number" name="certificate_number" required>
+            </li>
+            <li>
+                <label for="course_type">Course Type:</label>
+                <input type="text" id="course_type" name="course_type" required>
+            </li>
+            <li>
+                <label for="date_issued">Date Issued:</label>
+                <input type="date" id="date_issued" name="date_issued" required>
+            </li>
+            <li>
+                <button type="submit">Add Certificate</button>
+            </li>
+        </ul>
     </form>
+    
     <footer>
         <p>&copy; 2025 Canik Spy LTD. All Rights Reserved. | By: <a href="https://laitechsolutions.co.ke/" target="_blank" style="color: white; text-decoration: none;">LaiTech Solutions</a></p>
     </footer>

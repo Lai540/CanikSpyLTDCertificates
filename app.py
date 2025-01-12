@@ -1,5 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, send_file
 import sqlite3
+import csv
+from io import StringIO
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Use a secure key for production
@@ -17,7 +19,8 @@ def init_db():
             name TEXT,
             certificate_number TEXT,
             course_type TEXT,
-            date_issued TEXT
+            date_issued TEXT,
+            user_email TEXT
     )''')
     conn.commit()
     conn.close()
@@ -34,22 +37,30 @@ def certificate():
     if request.method == 'POST':
         certificate_number = request.form.get('certificate_number')
         surname = request.form.get('surname')
+        course_type = request.form.get('course_type')
+        date_issued = request.form.get('date_issued')
         
         conn = sqlite3.connect('certificate.db')
         c = conn.cursor()
         
-        # Perform search using LIKE for fuzzy search
+        # Perform search using LIKE for fuzzy search and exact match
         query = "SELECT * FROM certificates WHERE certificate_number LIKE ? AND name LIKE ?"
-        c.execute(query, ('%' + certificate_number + '%', '%' + surname + '%'))
+        
+        # Add filtering for course_type and date_issued if provided
+        if course_type:
+            query += " AND course_type LIKE ?"
+        if date_issued:
+            query += " AND date_issued LIKE ?"
+        
+        c.execute(query, ('%' + certificate_number + '%', '%' + surname + '%', 
+                          '%' + course_type + '%', '%' + date_issued + '%'))
         
         certificates = c.fetchall()
         conn.close()
         
         return render_template('index.html', certificates=certificates)
     
-    # If GET request, just return the index page without results
     return render_template('index.html')
-
 
 @app.route('/certificate/<int:certificate_id>')
 def certificate_details(certificate_id):
@@ -93,11 +104,12 @@ def add_certificate():
         certificate_number = request.form['certificate_number']
         course_type = request.form['course_type']
         date_issued = request.form['date_issued']
+        user_email = request.form.get('user_email')  # capturing the user's email for tracking
         
         conn = sqlite3.connect('certificate.db')
         c = conn.cursor()
-        c.execute("INSERT INTO certificates (name, certificate_number, course_type, date_issued) VALUES (?, ?, ?, ?)",
-                  (name, certificate_number, course_type, date_issued))
+        c.execute("INSERT INTO certificates (name, certificate_number, course_type, date_issued, user_email) VALUES (?, ?, ?, ?, ?) ",
+                  (name, certificate_number, course_type, date_issued, user_email))
         conn.commit()
         conn.close()
         return redirect(url_for('admin'))
@@ -140,6 +152,27 @@ def edit_certificate(certificate_id):
     certificate = c.fetchone()
     conn.close()
     return render_template('edit_certificate.html', certificate=certificate)
+
+@app.route('/admin/export')
+def export_certificates():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    
+    conn = sqlite3.connect('certificate.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM certificates")
+    certificates = c.fetchall()
+    conn.close()
+
+    # Create a CSV string from the certificate data
+    output = StringIO()
+    writer = csv.writer(output)
+    writer.writerow(['ID', 'Name', 'Certificate Number', 'Course Type', 'Date Issued', 'User Email'])  # Headers
+    for row in certificates:
+        writer.writerow(row)
+    
+    output.seek(0)
+    return send_file(output, mimetype='text/csv', attachment_filename='certificates.csv', as_attachment=True)
 
 # Run the Flask app
 if __name__ == "__main__":
