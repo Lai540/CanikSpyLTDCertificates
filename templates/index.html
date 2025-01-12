@@ -26,17 +26,19 @@
 
         <section>
             <h3>Search for a Certificate</h3>
-            <form action="/certificate" method="POST">
-                <label for="certificate_number">Certificate Number:</label>
-                <input type="text" id="certificate_number" name="certificate_number" required>
-    
-                <label for="surname">Surname:</label>
-                <input type="text" id="surname" name="surname">
-    
-                <button type="submit">Verify</button>
+            <form action="/certificate" method="POST" class="certificate-search-form">
+                <div class="form-group">
+                    <label for="certificate_number">Certificate Number:</label>
+                    <input type="text" id="certificate_number" name="certificate_number" required>
+                </div>
+                <div class="form-group">
+                    <label for="surname">Surname:</label>
+                    <input type="text" id="surname" name="surname">
+                </div>
+                <button type="submit" class="submit-button">Verify</button>
             </form>
-
         </section>
+
 
         {% if certificates %}
         <section>
