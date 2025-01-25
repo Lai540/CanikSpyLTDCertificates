@@ -6,52 +6,18 @@
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='canik_spy_logo.jpg') }}" type="image/x-icon">
-    <style>
-        /* General button styling */
-        .button {
-            background-color: maroon;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: darkred;
-        }
-
-        .button-container {
-            margin: 20px 0;
-        }
-
-        table a.button {
-            margin: 5px;
-        }
-    </style>
 </head>
 <body>
     <header>
         <img src="{{ url_for('static', filename='canik_spy_logo.jpg') }}" alt="Canik Spy LTD Logo" width="100" height="100">
         <nav>
-            <a href="/" class="button">Home</a>
-            <a href="/login" class="button">Logout</a>
+            <a href="/">Home</a>
+            <a href="/login">Logout</a>
         </nav>
     </header>
     <h1>Canik Spy LTD Admin Dashboard</h1>
     <h2>Manage Certificates</h2>
-    
-    <!-- Button for adding certificate -->
-    <div class="button-container">
-        <a href="/admin/add" class="button">Add Certificate</a>
-        <a href="/admin/export" class="button">Export All Certificates</a> <!-- Link to export all certificates -->
-    </div>
-
+    <a href="/admin/add" class="button">Add Certificate</a>
     <table>
         <thead>
             <tr>
@@ -72,7 +38,6 @@
                 <td>
                     <a href="/admin/edit/{{ certificate[0] }}" class="button">Edit</a>
                     <a href="/admin/delete/{{ certificate[0] }}" class="button">Delete</a>
-                    <a href="/admin/export?certificate_id={{ certificate[0] }}" class="button">Download</a> <!-- Link to download specific certificate -->
                 </td>
             </tr>
             {% endfor %}

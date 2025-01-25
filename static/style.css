@@ -163,6 +163,34 @@ tr:hover {
     transition: all 0.3s ease;
 }
 
+/* Simple button styles */
+.button {
+    background-color: maroon;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+/* Simple button styles */
+.button {
+    background-color: maroon;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+button {
+    background-color: maroon;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+
 /* Responsive Tables */
 @media (max-width: 768px) {
     table {
