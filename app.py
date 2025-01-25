@@ -44,6 +44,8 @@ def home():
 
 @app.route('/certificate', methods=['GET', 'POST'])
 def certificate():
+    message = None  # Initialize a message variable
+    certificates = []  # Default empty list
     if request.method == 'POST':
         certificate_number = request.form.get('certificate_number')
         name = request.form.get('name')  # Optional field
@@ -62,9 +64,11 @@ def certificate():
         certificates = c.fetchall()
         conn.close()
 
-        return render_template('index.html', certificates=certificates)
+        # Set a message if no certificates are found
+        if not certificates:
+            message = "No certificate found with the provided details."
 
-    return render_template('index.html')
+    return render_template('index.html', certificates=certificates, message=message)
 
 @app.route('/certificate/<int:certificate_id>')
 def certificate_details(certificate_id):
@@ -80,11 +84,20 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        if email == ADMIN_EMAIL and password == ADMIN_PASSWORD:
+        error = None  # Initialize error as None
+
+        if email != ADMIN_EMAIL and password != ADMIN_PASSWORD:
+            error = "Invalid email and password."
+        elif email != ADMIN_EMAIL:
+            error = "Email not found."
+        elif password != ADMIN_PASSWORD:
+            error = "Incorrect password."
+        else:
             session['logged_in'] = True
             return redirect(url_for('admin'))
-        else:
-            return render_template('login.html', error="Invalid credentials")
+
+        return render_template('login.html', error=error)
+
     return render_template('login.html')
 
 @app.route('/admin')

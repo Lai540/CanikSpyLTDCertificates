@@ -12,7 +12,7 @@
         <img src="{{ url_for('static', filename='canik_spy_logo.jpg') }}" alt="Canik Spy LTD Logo" width="100" height="100">
         <nav>
             <a href="/">Home</a>
-            <a href="/certificate">Search Certificates</a>
+            <a href="https://www.canikspy.co.ke/contact-us/" target="_blank">Contact Us</a>
             <a href="/login">Admin Login</a>
         </nav>
     </header>
@@ -32,12 +32,18 @@
                     <input type="text" id="certificate_number" name="certificate_number" required>
                 </div>
                 <div class="form-group">
-                    <label for="surname">Surname (Optional):</label>
-                    <input type="text" id="surname" name="surname">
+                    <label for="name">Name (Optional):</label>
+                    <input type="text" id="name" name="name">
                 </div>
                 <button type="submit" class="submit-button">Verify</button>
             </form>
         </section>
+
+        {% if message %}
+        <section>
+            <p style="color: red; font-weight: bold;">{{ message }}</p>
+        </section>
+        {% endif %}
 
         {% if certificates %}
         <section>
