@@ -16,7 +16,12 @@ body {
 }
 
 /* Typography */
-h1, h2 {
+h1 {
+    color: #800000; /* Marron color */
+    margin-top: 20px;
+    word-wrap: break-word;
+}
+h2 {
     color: #800000; /* Maroon color */
     margin-top: 20px;
     word-wrap: break-word;

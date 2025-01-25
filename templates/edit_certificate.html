@@ -10,13 +10,12 @@
 <body>
     <header>
         <img src="{{ url_for('static', filename='canik_spy_logo.png') }}" alt="Canik Spy LTD Logo" width="100" height="100">
-        <h1>Canik Spy LTD - Edit Certificate</h1>
         <nav>
             <a href="/">Home</a>
             <a href="/admin">Admin Dashboard</a>
         </nav>
     </header>
-
+    <h1>Canik Spy LTD - Edit Certificate</h1>
     <h2>Edit Certificate</h2>
     <form action="/admin/edit/{{ certificate[0] }}" method="POST">
         <label for="name">Name:</label>
