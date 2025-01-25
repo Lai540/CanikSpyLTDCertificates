@@ -169,26 +169,46 @@ def edit_certificate(certificate_id):
     conn.close()
     return render_template('edit_certificate.html', certificate=certificate)
 
-@app.route('/admin/export')
+@app.route('/admin/export', methods=['GET'])
 def export_certificates():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
+    
+    certificate_id = request.args.get('certificate_id', None)  # Get the certificate_id from the URL query parameter
 
     conn = get_db_connection()
     c = conn.cursor()
-    c.execute("SELECT * FROM certificates")
-    certificates = c.fetchall()
+
+    if certificate_id:
+        # Export a single certificate based on the certificate_id
+        c.execute("SELECT * FROM certificates WHERE id = ?", (certificate_id,))
+        certificates = c.fetchall()
+        if not certificates:
+            return "Certificate not found.", 404  # Return an error if the certificate doesn't exist
+    else:
+        # Export all certificates
+        c.execute("SELECT * FROM certificates")
+        certificates = c.fetchall()
+
     conn.close()
 
     # Create a CSV string from the certificate data
     output = StringIO()
     writer = csv.writer(output)
-    writer.writerow(['ID', 'Name', 'Certificate Number', 'Course Type', 'Date Issued'])  # Headers
-    for row in certificates:
-        writer.writerow(row)
+    
+    if certificate_id:
+        writer.writerow(['ID', 'Name', 'Certificate Number', 'Course Type', 'Date Issued'])  # Header for single certificate
+        for row in certificates:
+            writer.writerow(row)
+    else:
+        writer.writerow(['ID', 'Name', 'Certificate Number', 'Course Type', 'Date Issued'])  # Header for all certificates
+        for row in certificates:
+            writer.writerow(row)
 
     output.seek(0)
-    return send_file(output, mimetype='text/csv', attachment_filename='certificates.csv', as_attachment=True)
+    # Determine the filename based on whether it's one certificate or all
+    filename = 'certificate' + (f'_{certificate_id}' if certificate_id else '') + '.csv'
+    return send_file(output, mimetype='text/csv', attachment_filename=filename, as_attachment=True)
 
 # Run the Flask app
 if __name__ == "__main__":
