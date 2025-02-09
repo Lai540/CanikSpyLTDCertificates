@@ -84,20 +84,11 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        error = None  # Initialize error as None
-
-        if email != ADMIN_EMAIL and password != ADMIN_PASSWORD:
-            error = "Invalid email and password."
-        elif email != ADMIN_EMAIL:
-            error = "Email not found."
-        elif password != ADMIN_PASSWORD:
-            error = "Incorrect password."
-        else:
+        if email == ADMIN_EMAIL and password == ADMIN_PASSWORD:
             session['logged_in'] = True
             return redirect(url_for('admin'))
-
-        return render_template('login.html', error=error)
-
+        else:
+            return render_template('login.html', error="Invalid credentials")
     return render_template('login.html')
 
 @app.route('/admin')
