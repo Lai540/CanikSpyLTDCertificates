@@ -6,50 +6,6 @@
     <title>Certificate Details</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='canik_spy_logo.jpg') }}" type="image/x-icon">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 400px;
-            margin: 50px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-        .certificate-card {
-            text-align: left;
-            position: relative;
-        }
-        .certificate-card h2 {
-            margin-top: 0;
-            color: #2c3e50;
-        }
-        .certificate-card p {
-            margin: 15px 0;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        .certificate-card span {
-            font-weight: normal;
-            display: block;
-            margin-top: 5px;
-            color: #555;
-        }
-        .valid-check {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: green;
-            font-size: 24px;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -60,20 +16,29 @@
         </nav>
     </header>
     <h1>Canik Spy LTD Certificate Details</h1>
-    
-    <div class="container">
-        <div class="certificate-card">
-            <i class="fas fa-check-circle valid-check"></i>
-            <h2>Certificate Details</h2>
-            <p>Name: <span>{{ certificate[1] }}</span></p>
-            <p>Certificate Number: <span>{{ certificate[2] }}</span></p>
-            <p>Course Type: <span>{{ certificate[3] }}</span></p>
-            <p>Date Issued: <span>{{ certificate[4] }}</span></p>
-        </div>
+    <h2>Certificate Details</h2>
+    <div class="certificate-details">
+        <table>
+            <tr>
+                <th>Name</th>
+                <td>{{ certificate[1] }}</td>
+            </tr>
+            <tr>
+                <th>Certificate Number</th>
+                <td>{{ certificate[2] }}</td>
+            </tr>
+            <tr>
+                <th>Course Type</th>
+                <td>{{ certificate[3] }}</td>
+            </tr>
+            <tr>
+                <th>Date Issued</th>
+                <td>{{ certificate[4] }}</td>
+            </tr>
+        </table>
     </div>
-    
     <footer>
-        <p>&copy; 2025 Canik Spy LTD. All Rights Reserved. | By: <a href="https://laitechsolutions.co.ke/" target="_blank" style="color: white; text-decoration: none;">LaiTech Solutions</a></p>
+        <p>&copy; 2025 Canik Spy LTD. All Rights Reserved. | Developed By: <a href="https://laitechsolutions.co.ke/" target="_blank" style="color: white; text-decoration: none;">LaiTech Solutions</a></p>
     </footer>
 </body>
 </html>
